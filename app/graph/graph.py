@@ -1,5 +1,6 @@
 from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import tools_condition
+from langgraph.checkpoint.memory import MemorySaver 
 #  if want to visualize the graph use below imports
 # from IPython import Image, display 
 
@@ -26,7 +27,12 @@ builder.add_conditional_edges(
 # After tool execution, go back to chatbot
 builder.add_edge("tools", "chatbot")
 
-graph = builder.compile()
+# creating memory checkpointer to save the state of the graph
+memory = MemorySaver()
+
+graph = builder.compile(
+    checkpointer=memory
+)
 
 
 

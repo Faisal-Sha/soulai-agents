@@ -19,6 +19,11 @@ def chat(request: ChatRequest):
                     HumanMessage(content=request.message)
                 ],
                 "user_language": user_language,
+            },
+            config={
+                "configurable": {
+                    "thread_id": request.thread_id,
+                }
             }
         )
 

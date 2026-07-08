@@ -1,10 +1,13 @@
 from pydantic import BaseModel
 
 
+# user message schema
 class ChatRequest(BaseModel):
     message: str
+    thread_id: str
 
 
+# schema of supabase knowledge source (document_chunks)
 class KnowledgeSource(BaseModel):
     id: str | None = None
     document_id: str | None = None
@@ -16,6 +19,7 @@ class KnowledgeSource(BaseModel):
     token_count: int | None = None
 
 
+# system response schema
 class ChatResponse(BaseModel):
     answer: str
     sources: list[KnowledgeSource] = []
