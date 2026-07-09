@@ -1,9 +1,11 @@
 from langgraph.prebuilt import ToolNode
 
 from app.tools.knowledge import knowledge_search
+from app.tools.user_context import get_user_context
 
 tools = [
     knowledge_search,
+    get_user_context
 ]
 
 tool_node = ToolNode(tools)
