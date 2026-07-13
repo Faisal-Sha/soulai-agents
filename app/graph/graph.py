@@ -5,13 +5,13 @@ from langgraph.checkpoint.memory import MemorySaver
 # from IPython import Image, display 
 
 from app.graph.tools import tool_node
-from app.graph.node import chatbot_node
+from app.graph.node import assistant_node
 from app.graph.state import AgentState
 
 builder = StateGraph(AgentState)
 
 # Nodes
-builder.add_node("chatbot", chatbot_node)
+builder.add_node("chatbot", assistant_node)
 builder.add_node("tools", tool_node)
 
 # Start

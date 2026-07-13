@@ -5,7 +5,7 @@ from app.prompts.system_prompt import build_system_prompt
 from app.services.llm import llm_with_tools
 
 
-def chatbot_node(state: AgentState):
+def assistant_node(state: AgentState):
     user_language = state.get("user_language", "en")
     system_prompt = build_system_prompt(user_language)
 
