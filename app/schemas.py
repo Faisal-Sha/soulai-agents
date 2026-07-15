@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -24,4 +26,20 @@ class KnowledgeSource(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     sources: list[KnowledgeSource] = []
+
+
+class ChatThreadSummary(BaseModel):
+    thread_id: str
+    preview: str | None = None
+    message_count: int = 0
+    updated_at: datetime | None = None
+
+
+class ChatHistoryMessage(BaseModel):
+    id: str | None = None
+    thread_id: str
+    user_id: str
+    role: str
+    content: str
+    created_at: datetime | None = None
 
