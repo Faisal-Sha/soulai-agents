@@ -27,6 +27,14 @@ class ChatResponse(BaseModel):
     answer: str
     sources: list[KnowledgeSource] = []
 
+    # "complete" = normal finished answer
+    # "waiting"  = we asked a follow-up and stored conversation_context
+    status: str = "complete"
+
+    # Optional snapshot of pending slots (useful for debugging / UI)
+    # Example: {"intent": "friend_matrix", "slots": {"friend_name": "Asim", "friend_dob": null}}
+    pending: dict | None = None
+
 
 class ChatThreadSummary(BaseModel):
     thread_id: str
