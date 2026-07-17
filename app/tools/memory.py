@@ -13,9 +13,11 @@ def memory_search(
 ):
     """
     Retrieve long-term memories and life facts the user previously shared in conversation
-    (goals, family names, preferences, projects, "what do you know about me").
+    (goals, family names, preferences, projects, friend DOBs / friend Destiny Matrices).
 
-    Use for remembered chat facts. Do NOT use for Destiny Matrix energies, DOB, profile,
+    Use for remembered chat facts and previously calculated friend/relative matrices
+    (keys like person_sarah_relation, person_sarah_dob, person_sarah_matrix).
+    Do NOT use for THIS user's own Destiny Matrix energies, DOB, profile,
     or subscription — those come from get_user_context.
 
     Never guess; call this tool when remembered information is needed.

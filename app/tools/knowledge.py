@@ -11,11 +11,11 @@ def knowledge_search(question: str):
     Use for:
     - General questions (no "my"): Matrix of Destiny, numerology, energy meanings,
       compatibility theory, Human Design, astrology, spiritual concepts.
-    - AFTER get_user_context: explain a personal energy (e.g. question=
-      "Matrix of Destiny energy 9 meaning and interpretation").
+    - AFTER get_user_context or calculate_destiny_matrix: explain a personal energy
+      (e.g. question="Matrix of Destiny energy 9 meaning and interpretation").
 
     Do NOT use this alone for the user's own DOB, matrix numbers, or subscription —
-    call get_user_context for those first.
+    call get_user_context (or calculate_destiny_matrix if no saved matrix) for those first.
 
     Pass a clear natural-language search question focused on the concept to retrieve.
     """

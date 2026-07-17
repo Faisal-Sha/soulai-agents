@@ -182,8 +182,15 @@ class ClarificationService:
                 f"Please continue the earlier request about {name}'s Destiny Matrix.\n"
                 f"Friend name: {name}\n"
                 f"Friend date of birth: {dob}\n"
-                f"Use this information to give a helpful Destiny Matrix reading for {name}. "
-                f"Do not ask for the date of birth again."
+                f"Steps:\n"
+                f"1) Call calculate_destiny_matrix with date_of_birth=\"{dob}\", "
+                f"person_name=\"{name}\", matrix_type=\"friend\".\n"
+                f"   (This saves {name}'s relation, DOB, and matrix into long-term "
+                f"memory — not saved_matrices.)\n"
+                f"2) Call knowledge_search for the meaning of 1–2 key energies "
+                f"(for example center or money).\n"
+                f"3) Give a helpful Destiny Matrix reading for {name}.\n"
+                f"Do not ask for the date of birth again. Do not invent matrix numbers."
             )
 
         # Fallback for future intents
