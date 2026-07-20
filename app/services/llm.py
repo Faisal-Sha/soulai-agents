@@ -5,20 +5,26 @@ from app.config import OPENAI_API_KEY
 from app.tools.knowledge import knowledge_search
 from app.tools.user_context import get_user_context
 from app.tools.memory import memory_search
-from app.tools.destiny_matrix import calculate_destiny_matrix
+from app.tools.destiny_matrix import (
+    calculate_destiny_matrix,
+    calculate_compatibility_matrix,
+)
 
 llm = ChatOpenAI(
     api_key=OPENAI_API_KEY,
     model="gpt-4.1-mini",
     temperature=0.7,
-    max_tokens=500
-    )
+    max_tokens=500,
+    timeout=60,
+    max_retries=3,
+)
 
 tools = [
     knowledge_search,
     get_user_context,
     memory_search,
     calculate_destiny_matrix,
+    calculate_compatibility_matrix,
 ]
 
 llm_with_tools = llm.bind_tools(tools)

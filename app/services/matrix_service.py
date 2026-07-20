@@ -23,7 +23,12 @@ import json
 import re
 
 from app.db.supabase import supabase
-from app.destiny_matrix import calculate_matrix, parse_dob
+from app.destiny_matrix import (
+    calculate_compatibility_matrix,
+    calculate_compatibility_summary,
+    calculate_matrix,
+    parse_dob,
+)
 from app.services.memory_service import memory_service
 
 
@@ -212,6 +217,175 @@ class MatrixService:
             "saved": True,
             "saved_memories": memories,
         }
+
+    def calculate_compatibility(
+        self,
+        *,
+        user_id: str,
+        first_dob: str,
+        second_dob: str,
+        first_name: str = "",
+        second_name: str = "",
+    ) -> dict:
+        """
+        Calculate a two-person compatibility matrix + short summary,
+        then remember it in long-term memory (not saved_matrices).
+        """
+        first = parse_dob(first_dob)
+        second = parse_dob(second_dob)
+
+        matrix = calculate_compatibility_matrix(first, second)
+        summary = calculate_compatibility_summary(first, second)
+
+        name_a = (first_name or "").strip() or "Person A"
+        name_b = (second_name or "").strip() or "Person B"
+        birth_a = (
+            f"{first.year:04d}-{first.month:02d}-{first.day:02d}"
+        )
+        birth_b = (
+            f"{second.year:04d}-{second.month:02d}-{second.day:02d}"
+        )
+
+        memories = self.save_compatibility_to_memory(
+            user_id=user_id,
+            first_name=name_a,
+            second_name=name_b,
+            first_dob=birth_a,
+            second_dob=birth_b,
+            matrix=matrix,
+            summary=summary,
+        )
+
+        # Summary includes full person_a / person_b matrices — keep response readable
+        summary_compact = {
+            "pair_center": summary["pair_center"],
+            "relationship_energy": summary["relationship_energy"],
+            "challenge_area": summary["challenge_area"],
+            "harmony_area": summary["harmony_area"],
+            "growth_potential": summary["growth_potential"],
+            "communication_style": summary["communication_style"],
+        }
+
+        return {
+            "person_a": {
+                "name": name_a,
+                "date_of_birth": {
+                    "day": first.day,
+                    "month": first.month,
+                    "year": first.year,
+                },
+            },
+            "person_b": {
+                "name": name_b,
+                "date_of_birth": {
+                    "day": second.day,
+                    "month": second.month,
+                    "year": second.year,
+                },
+            },
+            "compatibility_matrix": matrix,
+            "compatibility_summary": summary_compact,
+            "storage": "memory",
+            "saved": True,
+            "saved_memories": memories,
+        }
+
+    def save_compatibility_to_memory(
+        self,
+        *,
+        user_id: str,
+        first_name: str,
+        second_name: str,
+        first_dob: str,
+        second_dob: str,
+        matrix: dict,
+        summary: dict,
+    ) -> list[dict]:
+        """
+        Remember a compatibility reading in long-term memory.
+
+        Example keys for Ali + Sarah:
+          compat_ali_sarah_matrix
+          compat_ali_sarah_summary
+        """
+        slug_a = _slug_name(first_name)
+        slug_b = _slug_name(second_name)
+        pair_key = f"{slug_a}_{slug_b}"
+        matrix_summary = _matrix_summary(matrix)
+        summary_text = (
+            f"pair_center={summary['pair_center']}, "
+            f"relationship_energy={summary['relationship_energy']}, "
+            f"harmony_area={summary['harmony_area']}, "
+            f"challenge_area={summary['challenge_area']}"
+        )
+
+        facts = [
+            {
+                "category": "relationship",
+                "key": f"compat_{pair_key}_matrix",
+                "value": json.dumps(matrix, separators=(",", ":")),
+                "memory_text": (
+                    f"Compatibility Destiny Matrix for {first_name} and "
+                    f"{second_name}: {matrix_summary}."
+                ),
+                "importance": 4,
+            },
+            {
+                "category": "relationship",
+                "key": f"compat_{pair_key}_summary",
+                "value": summary_text,
+                "memory_text": (
+                    f"Compatibility summary for {first_name} and "
+                    f"{second_name}: {summary_text}."
+                ),
+                "importance": 4,
+            },
+            {
+                "category": "relationship",
+                "key": f"person_{slug_a}_dob",
+                "value": first_dob,
+                "memory_text": (
+                    f"{first_name} was born on {first_dob}."
+                ),
+                "importance": 5,
+            },
+            {
+                "category": "relationship",
+                "key": f"person_{slug_b}_dob",
+                "value": second_dob,
+                "memory_text": (
+                    f"{second_name} was born on {second_dob}."
+                ),
+                "importance": 5,
+            },
+        ]
+
+        saved_keys: list[dict] = []
+        skip_dob_slugs = {"me", "user", "myself"}
+
+        for fact in facts:
+            # Do not overwrite DOB memory for the authenticated user alias
+            if fact["key"].endswith("_dob"):
+                slug = fact["key"].removeprefix("person_").removesuffix("_dob")
+                if slug in skip_dob_slugs:
+                    continue
+
+            memory_service.save_memory(
+                user_id=user_id,
+                category=fact["category"],
+                key=fact["key"],
+                value=fact["value"],
+                memory_text=fact["memory_text"],
+                importance=fact["importance"],
+            )
+            saved_keys.append(
+                {
+                    "memory_key": fact["key"],
+                    "memory_text": fact["memory_text"],
+                }
+            )
+
+        return saved_keys
 
 
 matrix_service = MatrixService()
