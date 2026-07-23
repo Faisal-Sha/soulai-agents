@@ -1,0 +1,30 @@
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:start", "message": "POST /chat started", "data": {"thread_id": "35247113-5442-45cd-a3ab-989454fe8b0a", "user_id_present": true, "message_len": 5}, "timestamp": 1784532012539}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:language", "message": "Language detected", "data": {"user_language": "en"}, "timestamp": 1784532012545}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:history", "message": "Supabase get_chat_history succeeded", "data": {"history_count": 0}, "timestamp": 1784532012547}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "B", "location": "chat.py:chat:graph", "message": "LangGraph invoke succeeded", "data": {"message_count": 2}, "timestamp": 1784532018233}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:save", "message": "Supabase save_chat_message succeeded", "data": {}, "timestamp": 1784532018239}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:done", "message": "POST /chat completed", "data": {"answer_len": 34}, "timestamp": 1784532019084}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:start", "message": "POST /chat started", "data": {"thread_id": "thread-001", "user_id_present": true, "message_len": 3}, "timestamp": 1784618863713}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:language", "message": "Language detected", "data": {"user_language": "en"}, "timestamp": 1784618863725}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:history", "message": "Supabase get_chat_history succeeded", "data": {"history_count": 0}, "timestamp": 1784618863728}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "B", "location": "chat.py:chat:graph", "message": "LangGraph invoke succeeded", "data": {"message_count": 2}, "timestamp": 1784618871429}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:save", "message": "Supabase save_chat_message succeeded", "data": {}, "timestamp": 1784618871432}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:done", "message": "POST /chat completed", "data": {"answer_len": 34}, "timestamp": 1784618872418}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:start", "message": "POST /chat started", "data": {"thread_id": "thread-001", "user_id_present": true, "message_len": 20}, "timestamp": 1784618890987}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:language", "message": "Language detected", "data": {"user_language": "en"}, "timestamp": 1784618890988}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:history", "message": "Supabase get_chat_history succeeded", "data": {"history_count": 2}, "timestamp": 1784618890990}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "B", "location": "chat.py:chat:graph", "message": "LangGraph invoke succeeded", "data": {"message_count": 6}, "timestamp": 1784618892736}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:save", "message": "Supabase save_chat_message succeeded", "data": {}, "timestamp": 1784618892737}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:done", "message": "POST /chat completed", "data": {"answer_len": 46}, "timestamp": 1784618893609}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:start", "message": "POST /chat started", "data": {"thread_id": "thread-001", "user_id_present": true, "message_len": 38}, "timestamp": 1784618987177}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:language", "message": "Language detected", "data": {"user_language": "en"}, "timestamp": 1784618987200}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:history", "message": "Supabase get_chat_history succeeded", "data": {"history_count": 4}, "timestamp": 1784618987202}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "B", "location": "chat.py:chat:graph", "message": "LangGraph invoke succeeded", "data": {"message_count": 14}, "timestamp": 1784618990548}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:save", "message": "Supabase save_chat_message succeeded", "data": {}, "timestamp": 1784618990550}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:done", "message": "POST /chat completed", "data": {"answer_len": 127}, "timestamp": 1784618991812}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:start", "message": "POST /chat started", "data": {"thread_id": "thread-001", "user_id_present": true, "message_len": 19}, "timestamp": 1784620816567}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:language", "message": "Language detected", "data": {"user_language": "en"}, "timestamp": 1784620816574}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:history", "message": "Supabase get_chat_history succeeded", "data": {"history_count": 6}, "timestamp": 1784620816577}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "B", "location": "chat.py:chat:graph", "message": "LangGraph invoke succeeded", "data": {"message_count": 22}, "timestamp": 1784620819436}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "A", "location": "chat.py:chat:save", "message": "Supabase save_chat_message succeeded", "data": {}, "timestamp": 1784620819437}
+{"sessionId": "d1c607", "runId": "pre-fix", "hypothesisId": "E", "location": "chat.py:chat:done", "message": "POST /chat completed", "data": {"answer_len": 64}, "timestamp": 1784620820282}
