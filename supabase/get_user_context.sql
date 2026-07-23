@@ -1,5 +1,6 @@
 CREATE OR REPLACE FUNCTION public.get_user_context(
-    p_user_id uuid
+    p_user_id uuid,
+    p_fields text[] DEFAULT NULL  -- TAYYAB: added this parameter
 )
 RETURNS jsonb
 LANGUAGE plpgsql
@@ -83,7 +84,19 @@ BEGIN
     )
     INTO result;
 
-    RETURN result;
+    -- ===== TAYYAB: START — everything below this line is new =====
+    -- No p_fields passed -> return everything, exactly like before.
+    IF p_fields IS NULL THEN
+        RETURN result;
+    END IF;
+
+    -- p_fields passed -> keep only those top-level keys (metadata always kept)
+    RETURN (
+        SELECT jsonb_object_agg(key, value)
+        FROM jsonb_each(result)
+        WHERE key = ANY(p_fields) OR key = 'metadata'
+    );
+    -- ===== TAYYAB: END =====
 
 END;
 $$;
